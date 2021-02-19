@@ -1,32 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <div class="content">
+			<router-view></router-view>
+		</div>
+    <!-- tabbar -->
+		<!-- 登录页不显示tabbar -->
+    <tab-bar v-if="$route.fullPath!=='/login'"></tab-bar>
   </div>
 </template>
 
+<script>
+import TabBar from "./components/content/tabBar/TabBar";
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    TabBar,
+  },
+	methods: {},
+	created() {
+		console.log(this.$route)
+	}
+};
+</script>
+
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+@import url("./assets/css/normalize.css");
+@import url("./assets/css/global.css");
+.content {
+	overflow: hidden;
 }
 </style>
